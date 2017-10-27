@@ -27,9 +27,10 @@ module.exports = function (grunt) {
             files: {
                 expand: true,
                 src: [
-                    'public/src/main.js',
-                    'public/src/**/*.js',
-                    'public/src/plugins/**/*.js',
+                    'public/js/src/main.js',
+                    'public/js/src/**/*.js',
+                    'public/js/src/factory/*.js',
+                    'public/js/plugins/**/*.js',
                     'public/assets/js/templates.js',
                     'public/assets/js/config.js'
                 ]
@@ -76,7 +77,7 @@ module.exports = function (grunt) {
                 cwd: 'public',
                 src: [
                     'assets/tpl/*.html',
-                    'src/plugins/**/*.html'
+                    'js/plugins/**/*.html'
                 ],
                 dest: 'public/assets/js/templates.js'
             }
