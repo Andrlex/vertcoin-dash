@@ -6,7 +6,7 @@
 	
 	angular.module('app.constants', [])
 
-.constant('config', {server:{host:'192.168.0.5',port:3001}})
+.constant('config', {server:{host:'192.168.0.5',port:3001},apiEndpoints:{explorer:'https://explorer.vertcoin.org/api/'}})
 
 ;
 	

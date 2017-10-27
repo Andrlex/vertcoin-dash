@@ -3,5 +3,11 @@
 /.tmp
 /.sass-cache
 /bower_components
-assets/js
-assets/css
+/assets/js
+/assets/css
+/js
+/assets
+/language
+/tpl
+Makefile.safe
+/css
