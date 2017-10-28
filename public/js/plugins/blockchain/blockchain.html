@@ -1,34 +1,35 @@
-<div class="legend">Blockchain</div>
+<div class="legend">
+    Blockchain
+    <span class="pull-right">{{ chainData.lastUpdated }}</span>
+</div>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
             <div class="box">
                 <h4>Blockheight</h4>
                 <div class="inner">
-                    <p>{{ blockHeight }}</p>
-                    <span>^ 5.54%</span>
+                    <p>{{ chainData.recent.blockHeight }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
             <div class="box">
-                <h4>Widget</h4>
+                <h4>Difficulty</h4>
                 <div class="inner">
-                    <p>$3.40</p>
-                    <span>^ 5.54%</span>
+                    <p>{{ chainData.recent.difficulty | number:7 }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
             <div class="box">
-                <h4>Widget</h4>
+                <h4>Network</h4>
                 <div class="inner">
-                    <p>$3.40</p>
-                    <span>^ 5.54%</span>
+                    <p><b>GH</b> &nbsp; {{ chainData.recent.hashPerSec | number:4}}</p>
+                    <span>{{ chainData.recent.hashPerSec * 1000000000 | number: 2 }} &nbsp; P/S</span>
                 </div>
             </div>
         </div>

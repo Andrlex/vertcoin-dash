@@ -1,21 +1,45 @@
 .box {
-  height: 100px;
+  height: 115px;
   padding: 10px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 100%;
-  box-shadow: 1px 1px 5px #d6d6d6;
+  box-shadow: 1px 1px 1px 1px #cccccc;
+  text-align: right;
+  &.height-override {
+    height: auto !important;
+  }
   h4 {
-
+    font-size: 22px;
+    span {
+      font-size: 18px;
+    }
   }
   .inner {
     p {
-      float: left;
       margin-right: 4px;
+      font-size: 24px;
     }
     span {
+      font-size: 12px;
       float: left;
-      font-size: 17px;
-      color: #6cff6c;
+    }
+    .corner {
+      font-size: 15px;
+      .changes {
+        position: absolute;
+        left: 28px;
+        bottom: 45px;
+      }
     }
   }
+}
+
+.down {
+  color: red;
+  font-size: 14px !important;
+}
+.up {
+  color: #69a269;
+  font-size: 14px !important;
 }

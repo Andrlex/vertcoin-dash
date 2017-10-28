@@ -44,14 +44,6 @@
 		$locationProvider
 			.html5Mode(true)
 			.hashPrefix('/');
-
-		$httpProvider.defaults.useXDomain = true;
-		$httpProvider.defaults.withCredentials = true;
-		delete $httpProvider.defaults.headers.common["X-Requested-With"];
-		$httpProvider.defaults.headers.common["Accept"] = "application/json";
-		$httpProvider.defaults.headers.common["Content-Type"] = "application/json";
-		delete $httpProvider.defaults.headers.common["Access-Control-Request-Headers"];
-		delete $httpProvider.defaults.headers.common["Access-Control-Request-Method"];
     }
 
     /**
@@ -154,16 +146,7 @@
 		 */
 		function get(url, params)
 		{
-			let request = $http.get('https://explorer.vertcoin.org/ext/summary', {
-				headers: {
-					'Cache-Control': 'max-age=0',
-					'Upgrade-Insecure-Requests': '1',
-					'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-					'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
-					'If-None-Match': '1235809891'
-				},
-				method: 'GET'
-			});
+			let request = $http.get(url);
 
 			return request.then(success, fail);
 		}
@@ -194,7 +177,7 @@
 
 		function getBlockchainData()
 		{
-			return api.get(endpoint + 'getblockcount');
+			return api.get(endpoint + '/api/chain');
 			// return api.get('https://api.coinmarketcap.com/v1/ticker/vertcoin/');
 		}
 	}
@@ -203,7 +186,36 @@
 {
 	'use strict';
 
-	blockchainCtrl.$inject = ['$scope', 'config', 'blockchain'];
+	market.$inject = ['api', 'config'];
+	angular
+		.module('app.factories')
+		.factory('market', market);
+
+	/**
+	 * @param api
+	 * @param config
+	 */
+	function market(api, config)
+	{
+		let endpoint = config.apiEndpoints.coinMarket;
+
+		return {
+			getMarketData: getMarketData
+		};
+
+		function getMarketData(currency)
+		{
+			let param = angular.isDefined(currency) ? currency : 'USD';
+
+			return api.get(endpoint + '?convert=' + param);
+		}
+	}
+})();
+(function ()
+{
+	'use strict';
+
+	blockchainCtrl.$inject = ['$scope', 'config', '$interval', 'blockchain'];
 	angular
 		.module('app.ctrls')
 		.controller('blockchainCtrl', blockchainCtrl);
@@ -215,26 +227,45 @@
 	/**
 	 * @param $scope
 	 * @param config
+	 * @param $interval
 	 * @param blockchain
 	 */
-	function blockchainCtrl($scope, config, blockchain)
+	function blockchainCtrl($scope, config, $interval, blockchain)
 	{
+		$scope.loading = false;
 		init();
 
+		$interval(function ()
+		{
+			init();
+		}, 15000);
+
+		/**
+		 *
+		 */
 		function init()
 		{
+			$scope.loading = true;
+
 			blockchain
 				.getBlockchainData()
-				.then(success, fail);
+				.then(success, fail)
+				.finally(always);
 
 			function success(response)
 			{
-				$scope.blockHeight = response;
+				$scope.chainData = response;
+				$scope.chainData.lastUpdated = moment.unix($scope.chainData.lastUpdated).local().format('DD-MM-YYYY HH:mm:ss');
 			}
 
 			function fail()
 			{
 
+			}
+
+			function always()
+			{
+				$scope.loading = false;
 			}
 		}
 
@@ -253,7 +284,7 @@
 {
 	'use strict';
 
-	marketCtrl.$inject = ['$scope'];
+	marketCtrl.$inject = ['$scope', 'market', '$interval'];
 	angular
 		.module('app.ctrls')
 		.controller('marketCtrl', marketCtrl);
@@ -264,10 +295,70 @@
 
 	/**
 	 * @param $scope
+	 * @param market
+	 * @param $interval
 	 */
-	function marketCtrl($scope)
+	function marketCtrl($scope, market, $interval)
 	{
+		$scope.currency = 'USD';
+		$scope.currencys = {
+			USD: {
+				token: '$',
+				marketCap: 'market_cap_usd',
+				price: 'price_usd',
+				volume: '24h_volume_usd'
+			},
+			GBP: {
+				token: '£',
+				marketCap: 'market_cap_gbp',
+				price: 'price_gbp',
+				volume: '24h_volume_gbp'
+			},
+			EUR: {
+				token: '€',
+				marketCap: 'market_cap_eur',
+				price: 'price_eur',
+				volume: '24h_volume_eur'
+			}
+		};
+		$scope.init = init;
 
+		init();
+
+		$interval(function ()
+		{
+			init();
+		}, 15000);
+
+		/**
+		 *
+		 */
+		function init()
+		{
+			market
+				.getMarketData($scope.currency)
+				.then(success, fail)
+				.finally(always);
+
+			function success(response)
+			{
+				$scope.marketData = response[0];
+				$scope.marketData.hourChange = parseFloat($scope.marketData['percent_change_1h']);
+				$scope.marketData.dayChange = parseFloat($scope.marketData['percent_change_24h']);
+				$scope.marketData.weekChange = parseFloat($scope.marketData['percent_change_7d']);
+				$scope.marketData.lastUpdated = moment.unix(response[0].last_updated).format('DD-MM-YYYY HH:mm:ss');
+			}
+
+			function fail()
+			{
+
+			}
+
+			function always()
+			{
+
+			}
+		}
 	}
 
 	function marketPlugin()
@@ -313,17 +404,17 @@ angular.module('app.tpl', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('assets/tpl/app.html',
-    "<div class=\"container ng-scope\"><div class=\"header clearfix\"><h3 class=text-muted>Vertcoin Dashboard</h3></div><div class=marketing><market-plugin></market-plugin><blockchain-plugin></blockchain-plugin><mining-plugin></mining-plugin><div class=legend>Information</div><div class=row><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div></div></div><footer class=footer><p>VtAcqCUWarBYTXPFFXNBB1ikqjMsFeVaQH</p></footer></div>"
+    "<div class=\"container ng-scope\"><div class=\"header clearfix\"><h2 class=text-muted>Vertcoin Dashboard</h2></div><div class=marketing><market-plugin></market-plugin><blockchain-plugin></blockchain-plugin><mining-plugin></mining-plugin><div class=legend>Information</div><div class=row><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div></div></div><footer class=footer><p>VtAcqCUWarBYTXPFFXNBB1ikqjMsFeVaQH</p></footer></div>"
   );
 
 
   $templateCache.put('js/plugins/blockchain/blockchain.html',
-    "<div class=legend>Blockchain</div><div class=row><div class=col-lg-4><div><div class=box><h4>Blockheight</h4><div class=inner><p>{{ blockHeight }}</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div></div>"
+    "<div class=legend>Blockchain <span class=pull-right>{{ chainData.lastUpdated }}</span></div><div class=row><div class=\"col-lg-4 col-md-4 col-sm-4\"><div><div class=box><h4>Blockheight</h4><div class=inner><p>{{ chainData.recent.blockHeight }}</p></div></div></div></div><div class=\"col-lg-4 col-md-4 col-sm-4\"><div><div class=box><h4>Difficulty</h4><div class=inner><p>{{ chainData.recent.difficulty | number:7 }}</p></div></div></div></div><div class=\"col-lg-4 col-md-4 col-sm-4\"><div><div class=box><h4>Network</h4><div class=inner><p><b>GH</b> &nbsp; {{ chainData.recent.hashPerSec | number:4}}</p><span>{{ chainData.recent.hashPerSec * 1000000000 | number: 2 }} &nbsp; P/S</span></div></div></div></div></div>"
   );
 
 
   $templateCache.put('js/plugins/market/market.html',
-    "<div class=legend>Market</div><div class=row><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div><div class=col-lg-4><div><div class=box><h4>Widget</h4><div class=inner><p>$3.40</p><span>^ 5.54%</span></div></div></div></div></div>"
+    "<div class=legend><div><div class=pull-left>Market</div><select class=form-control ng-options=\"key as key for (key, value) in currencys\" ng-model=currency ng-change=init()></select><span class=pull-right>{{ marketData.lastUpdated }}</span></div></div><div class=row><div class=col-lg-4><div class=box><h4>1 Vertcoin</h4><div class=inner><p class=\"pull-right corner\" ng-class=\"{'up': marketData.hourChange > 0, 'down': marketData.hourChange < 0}\">{{ marketData['percent_change_1h'] }} % <span class=changes><span ng-class=\"{'up': marketData.dayChange > 0, 'down': marketData.dayChange  < 0}\">D {{ marketData['percent_change_24h'] }} %&nbsp;&nbsp; </span><span ng-class=\"{'up': marketData.weekChange  > 0, 'down': marketData.weekChange < 0}\">W {{ marketData['percent_change_7d'] }} %</span></span></p>&nbsp;<p class=pull-right>{{ currencys[currency].token }} {{ marketData[currencys[currency].price] | number: 2 }}</p></div></div></div><div class=col-lg-4><div class=box><h4><span class=pull-left>Rank {{ marketData.rank}}</span> Market Cap</h4><div class=inner><p>{{ currencys[currency].token }} {{ marketData[currencys[currency].marketCap] | number: 0 }}</p></div></div></div><div class=col-lg-4><div class=box><h4>Volume (24hr)</h4><div class=inner><p>{{ currencys[currency].token }} {{ marketData[currencys[currency].volume] | number: 0 }}</p></div></div></div></div>"
   );
 
 
@@ -341,7 +432,7 @@ angular.module('app.tpl', []).run(['$templateCache', function($templateCache) {
 	
 	angular.module('app.constants', [])
 
-.constant('config', {server:{host:'192.168.0.5',port:3001},apiEndpoints:{explorer:'https://explorer.vertcoin.org/api/'}})
+.constant('config', {server:{host:'192.168.0.5',port:3001},apiEndpoints:{explorer:'http://192.168.0.5:3001',coinMarket:'https://api.coinmarketcap.com/v1/ticker/vertcoin/'}})
 
 ;
 	

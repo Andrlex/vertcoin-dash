@@ -23,8 +23,7 @@
 
 		function getBlockchainData()
 		{
-			return api.get(endpoint + 'getblockcount');
-			// return api.get('https://api.coinmarketcap.com/v1/ticker/vertcoin/');
+			return api.get(endpoint + '/api/chain');
 		}
 	}
 })();
