@@ -1,0 +1,6 @@
+{
+  "apiEndpoints": {
+    "explorer": "https://vertcoin-dashboard.com/",
+    "coinMarket": "https://api.coinmarketcap.com/v1/ticker/vertcoin/"
+  }
+}

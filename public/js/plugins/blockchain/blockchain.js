@@ -2,6 +2,7 @@
 {
 	'use strict';
 
+	blockchainCtrl.$inject = ['$scope', 'config', '$interval', 'blockchain'];
 	angular
 		.module('app.ctrls')
 		.controller('blockchainCtrl', blockchainCtrl);

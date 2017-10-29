@@ -2,6 +2,7 @@
 {
 	'use strict';
 
+	market.$inject = ['api', 'config'];
 	angular
 		.module('app.factories')
 		.factory('market', market);
