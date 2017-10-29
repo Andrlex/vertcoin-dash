@@ -2,6 +2,7 @@
 {
 	'use strict';
 
+	marketCtrl.$inject = ['$scope', 'market', '$interval'];
 	angular
 		.module('app.ctrls')
 		.controller('marketCtrl', marketCtrl);
