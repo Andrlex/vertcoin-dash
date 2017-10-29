@@ -127,7 +127,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'public/assets',
-                        src: ['**', '!**/*.svg', '!**/less/**', '!default/**']
+                        src: ['**', '!**/*.svg', '!**/less/**', '!default/**', 'img']
                     }
                 ]
             },
@@ -137,7 +137,8 @@ module.exports = function (grunt) {
                 src: [
                     'assets/css/*.css',
                     'assets/js/core.js',
-                    'index.html'
+                    'index.html',
+                    'assets/img/*.png'
                 ],
                 dest: 'public'
             }
