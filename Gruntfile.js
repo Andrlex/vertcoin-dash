@@ -50,9 +50,14 @@ module.exports = function (grunt) {
                 dest: 'public/assets/js/config.js',
                 wrap: '\n\n(function ()\n {\n\t\'use strict\';\n\t\n\t{%= __ngModule %}\n\t\n})();\n'
             },
-            default: {
+            dev: {
                 constants: {
-                    config: grunt.file.readJSON('config/config.json')
+                    config: grunt.file.readJSON('config/config.dev.json')
+                }
+            },
+            live: {
+                constants: {
+                    config: grunt.file.readJSON('config/' + 'config.' + (grunt.option('build')) + '.json')
                 }
             }
         },
@@ -170,14 +175,28 @@ module.exports = function (grunt) {
     });
 
     // Default task
-    grunt.registerTask('default', [
+    grunt.registerTask('dev', [
             'bower:default',
             'less:default',
-            'ngconstant',
+            'ngconstant:dev',
             'ngtemplates',
             'ngAnnotate',
             'concat:dev',
             'merge-json:default',
+            'copy:assets',
+            'copy:links',
+        ]);
+
+    grunt.registerTask('live', [
+            'bower:default',
+            'less:default',
+            'ngconstant:live',
+            'ngtemplates',
+            'ngAnnotate',
+            'concat:dev',
+            'merge-json:default',
+            'uglify:libs',
+            'uglify:core',
             'copy:assets',
             'copy:links',
         ]);
