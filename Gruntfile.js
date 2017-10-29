@@ -195,8 +195,6 @@ module.exports = function (grunt) {
             'ngAnnotate',
             'concat:dev',
             'merge-json:default',
-            'uglify:libs',
-            'uglify:core',
             'copy:assets',
             'copy:links',
         ]);
