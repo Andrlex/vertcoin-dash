@@ -399,11 +399,41 @@
 		};
 	}
 })();
+(function ()
+{
+	'use strict';
+
+	walletCtrl.$inject = ['$scope'];
+	angular
+		.module('app.ctrls')
+		.controller('walletCtrl', walletCtrl);
+
+	angular
+		.module('app.drtvs')
+		.directive('walletPlugin', walletPlugin);
+
+	/**
+	 * @param $scope
+	 */
+	function walletCtrl($scope)
+	{
+
+	}
+
+	function walletPlugin()
+	{
+		return {
+			restrict: 'E',
+			templateUrl: 'js/plugins/wallet/wallet.html',
+			controller: 'walletCtrl'
+		};
+	}
+})();
 angular.module('app.tpl', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('assets/tpl/app.html',
-    "<div class=\"container ng-scope\"><div class=\"header clearfix\"><h2 class=text-muted>Vertcoin Dashboard</h2></div><div class=marketing><market-plugin></market-plugin><blockchain-plugin></blockchain-plugin><mining-plugin></mining-plugin></div><footer class=footer><p>VtAcqCUWarBYTXPFFXNBB1ikqjMsFeVaQH</p></footer></div>"
+    "<div class=\"container ng-scope\"><div class=\"header clearfix\"><h2 class=text-muted>Vertcoin Dashboard</h2></div><div class=marketing><market-plugin></market-plugin><blockchain-plugin></blockchain-plugin><div class=row><div class=\"col-md-6 col-sm-6 col-lg-6\"><wallet-plugin></wallet-plugin></div><div class=\"col-md-6 col-sm-6 col-lg-6\"><mining-plugin></mining-plugin></div></div></div><footer class=footer><p>VTC VtAcqCUWarBYTXPFFXNBB1ikqjMsFeVaQH</p><p>BTC 37EjaY53GwvxsfcxVshcjZEBcWEZukZqi5</p></footer></div>"
   );
 
 
@@ -418,7 +448,12 @@ angular.module('app.tpl', []).run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('js/plugins/mining/mining.html',
-    "<div class=wrapper-top><div class=legend>Mining</div></div><div class=row><div class=\"col-lg-6 col-md-6 col-sm-6\"><div><div class=\"box height-override\"><div><h4>One Click Miner</h4><div class=inner><div><a class=pull-left href=https://github.com/vertcoin/One-Click-Miner/releases>https://github.com/vertcoin/One-Click-Miner/releases</a> <a href=http://alwayshashing.com/ocmhowto.pdf>Guide & Setup</a></div></div></div><div><h4>CC Miner</h4><div class=inner><div><a class=pull-left href=https://github.com/tpruvot/ccminer/releases>https://github.com/tpruvot/ccminer/releases</a> <a href=https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/ >Guide & Setup</a></div><div><a class=pull-left href=https://github.com/KlausT/ccminer/releases>https://github.com/KlausT/ccminer/releases</a> <a href=https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/ >Guide & Setup</a></div></div></div><div class=separator></div><div><h4>Mining Pools</h4><div class=inner><h5>Net1 Pools (Recommended for 100+ MHP/S)</h5><div><a href=https://scanner.vtconline.org/ >https://scanner.vtconline.org</a></div><div><a href=http://vertscan1.errantshed.co.uk/ >http://vertscan1.errantshed.co.uk/</a></div><div><a href=http://scanner1.alwayshashing.com/ >http://scanner1.alwayshashing.com/</a></div><h5>Net2 Pools (Recommended for lower hash rate)</h5><div><a href=http://vertscan2.errantshed.co.uk/ >http://vertscan2.errantshed.co.uk/</a></div><div><a href=http://scanner2.alwayshashing.com/ >http://scanner2.alwayshashing.com/</a></div></div></div></div></div></div></div>"
+    "<div class=wrapper-top><div class=legend>Mining</div></div><div class=row><div class=\"col-lg-12 col-md-12 col-sm-12\"><div class=\"box height-override\"><div><h4>One Click Miner</h4><div class=inner><div><a class=pull-left href=https://github.com/vertcoin/One-Click-Miner/releases>https://github.com/vertcoin/One-Click-Miner/releases</a> <a href=http://alwayshashing.com/ocmhowto.pdf>Guide & Setup</a></div></div></div><div><h4>CC Miner</h4><div class=inner><div><a class=pull-left href=https://github.com/tpruvot/ccminer/releases>https://github.com/tpruvot/ccminer/releases</a> <a href=https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/ >Guide & Setup</a></div><div><a class=pull-left href=https://github.com/KlausT/ccminer/releases>https://github.com/KlausT/ccminer/releases</a> <a href=https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/ >Guide & Setup</a></div></div></div><div class=separator></div><div><h4>Mining Pools</h4><div class=inner><h5>Net1 Pools (Recommended for 100+ MH/S)</h5><div><a href=https://scanner.vtconline.org/ >https://scanner.vtconline.org</a></div><div><a href=http://vertscan1.errantshed.co.uk/ >http://vertscan1.errantshed.co.uk/</a></div><div><a href=http://scanner1.alwayshashing.com/ >http://scanner1.alwayshashing.com/</a></div><h5>Net2 Pools (Recommended for less than 100 MH/s)</h5><div><a href=http://vertscan2.errantshed.co.uk/ >http://vertscan2.errantshed.co.uk/</a></div><div><a href=http://scanner2.alwayshashing.com/ >http://scanner2.alwayshashing.com/</a></div></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('js/plugins/wallet/wallet.html',
+    "<div class=wrapper-top><div class=legend>Wallets</div></div><div class=row><div class=\"col-lg-12 col-md-12 col-sm-12\"><div class=\"box height-override\"><div><h4>Hot Wallet</h4><div class=inner><div><a class=pull-left href=https://github.com/vertcoin/vertcoin/releases>https://github.com/vertcoin/vertcoin/releases</a><h5>Vertcoin Wallet</h5></div></div><div class=inner><div><a class=pull-left href=https://github.com/vertcoin/electrum-vtc/releases/ >https://github.com/vertcoin/electrum-vtc/releases/</a><h5>Electrum VTC</h5></div></div></div><div class=separator></div><div><h4>Cold Storage</h4><div class=inner><div><a class=pull-left href=https://github.com/vertcoin/paperwallet>https://github.com/vertcoin/paperwallet</a><h5>Paper Wallet</h5></div></div><div class=inner><div><a class=pull-left href=https://github.com/transcoder/printpaperwallet>https://github.com/transcoder/printpaperwallet</a><h5>Print Paper Wallet</h5></div></div><div class=inner><div><a class=pull-left href=\"https://walletgenerator.net/?currency=Vertcoin#\">https://walletgenerator.net/?currency=Vertcoin#</a><h5>Paper Wallet Generator</h5></div></div><div class=inner><div><a class=pull-left href=https://www.ledgerwallet.com/products/ledger-nano-s>https://www.ledgerwallet.com/products/ledger-nano-s</a><h5>Ledger Nano S</h5></div></div></div></div></div></div>"
   );
 
 }]);
