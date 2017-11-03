@@ -2,7 +2,7 @@ angular.module('app.tpl', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('assets/tpl/app.html',
-    "<div class=\"container ng-scope\"><div class=\"header clearfix\"><h2 class=text-muted>Vertcoin Dashboard</h2></div><div class=marketing><market-plugin></market-plugin><blockchain-plugin></blockchain-plugin><div class=row><div class=\"col-md-6 col-sm-6 col-lg-6\"><wallet-plugin></wallet-plugin></div><div class=\"col-md-6 col-sm-6 col-lg-6\"><mining-plugin></mining-plugin></div></div></div><footer class=footer ng-class=\"{'dark': darkTheme}\"><p class=pull-right style=\"width: 255px\">This is a community driven & funded project.</p><p>VTC VjwAP2w2tkoCJUhBhBMKMa9te4WzkUjkej</p><p>BTC 37EjaY53GwvxsfcxVshcjZEBcWEZukZqi5</p></footer></div>"
+    "<div class=\"container ng-scope\"><div class=\"header clearfix\"><h2 class=text-muted>Vertcoin Dashboard</h2></div><div class=marketing><market-plugin></market-plugin><blockchain-plugin></blockchain-plugin><div class=row><div class=\"col-md-6 col-sm-6 col-lg-6\"><wallet-plugin></wallet-plugin></div><div class=\"col-md-6 col-sm-6 col-lg-6\"><mining-plugin></mining-plugin></div></div></div><footer class=footer ng-class=\"{'dark': darkTheme}\"><p>VTC VjwAP2w2tkoCJUhBhBMKMa9te4WzkUjkej</p><p>BTC 37EjaY53GwvxsfcxVshcjZEBcWEZukZqi5</p><p class=pull-right style=\"width: 255px\">This is a community driven & funded project.</p></footer></div>"
   );
 
 

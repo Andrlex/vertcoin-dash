@@ -64,6 +64,9 @@
   @media screen and (max-width: 320px) {
     margin-bottom: 0;
   }
+  @media screen and (max-width: 992px) {
+    margin-bottom: 0;
+  }
   .timer {
     text-align: center;
     height: 50px;
@@ -78,6 +81,13 @@
     .wrapper {
       width: 100%;
       height: 100%;
+      padding-left: 14px;
+      @media screen and (max-width: 992px) {
+        padding-left: 0;
+      }
+      @media screen and (max-width: 767px) {
+        padding-left: 12px;
+      }
       .time-holder {
         height: 100%;
         display: table-cell;
@@ -94,7 +104,7 @@
         .time-post {
           font-size: 15px;
           @media screen and (max-width: 363px) {
-            font-size: 12px;
+            font-size: 11px;
           }
         }
       }
@@ -107,7 +117,7 @@
   right: 36px;
   bottom: -20px;
   font-size: 12px;
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 767px) {
     bottom: -62px;
     font-size: 12px;
     right: 21px;
