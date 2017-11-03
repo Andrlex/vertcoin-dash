@@ -45,7 +45,7 @@
 				$scope.chainData = response;
 				$scope.chainData.lastUpdated = moment.unix($scope.chainData.lastUpdated).local().format('DD-MM-YYYY HH:mm:ss');
 
-				let currentEst = _.clone(blockchain.getEstHalveTime()),
+				var currentEst = _.clone(blockchain.getEstHalveTime()),
 					estHalveDate = moment().add(Math.round((($scope.chainData.timeTillHalve * 60) * 60) * 1000), 'milliseconds');
 
 				blockchain.setEstHalveTime(estHalveDate);

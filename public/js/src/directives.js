@@ -26,7 +26,7 @@
 		 */
 		function link(scope)
 		{
-			let ms = scope.time,
+			var ms = scope.time,
 				duration = moment.duration(ms, 'milliseconds'),
 				interval = $interval(tick, 1000, 0 , true);
 
@@ -55,7 +55,7 @@
 
 			function msToFormat(ms)
 			{
-				let duration = moment.duration(ms),
+				var duration = moment.duration(ms),
 					formattedTime = {};
 
 				formattedTime.day = 0;

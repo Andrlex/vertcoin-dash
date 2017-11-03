@@ -15,7 +15,7 @@
 	 */
 	function blockchain(api, config)
 	{
-		let endpoint = config.apiEndpoints.explorer,
+		var endpoint = config.apiEndpoints.explorer,
 			estTimeTillHalve = {};
 
 		return {

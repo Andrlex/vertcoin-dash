@@ -21,7 +21,7 @@
 
 		function updateTime()
 		{
-			let estHalveTime = blockchain.getEstHalveTime();
+			var estHalveTime = blockchain.getEstHalveTime();
 
 			$scope.time = moment.duration(estHalveTime.time.diff(moment()))._milliseconds;
 			$scope.estHalveDate = estHalveTime.time.format('DD-MM-YYYY HH:mm:ss');
