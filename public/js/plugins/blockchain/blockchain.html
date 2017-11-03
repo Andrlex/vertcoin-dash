@@ -1,13 +1,23 @@
 <div class="wrapper-top">
-    <div class="legend">
+    <div class="legend" ng-class="{'dark': darkTheme}">
         Blockchain
         <span class="pull-right">{{ chainData.lastUpdated }}</span>
     </div>
 </div>
+
+<div class="row" style="height: 115px; margin-bottom: 9px">
+    <div class="col-md-8 col-md-offset-2">
+        <div ng-if="time">
+            <timer time="time"></timer>
+        </div>
+        <div class="est-time">{{ estHalveDate }}</div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
-            <div class="box">
+            <div class="box" ng-class="{'dark': darkTheme}">
                 <h4>Blockheight</h4>
                 <div class="inner">
                     <p>{{ chainData.recent.blockHeight }}</p>
@@ -17,7 +27,7 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
-            <div class="box">
+            <div class="box" ng-class="{'dark': darkTheme}">
                 <h4>Difficulty</h4>
                 <div class="inner">
                     <p>{{ chainData.recent.difficulty | number:7 }}</p>
@@ -27,7 +37,7 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
-            <div class="box">
+            <div class="box" ng-class="{'dark': darkTheme}">
                 <h4>Network</h4>
                 <div class="inner">
                     <p><b>GH</b> &nbsp; {{ chainData.recent.hashPerSec | number:4}}</p>

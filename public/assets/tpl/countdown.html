@@ -1,0 +1,17 @@
+<div class="timer">
+    <h4>Reward Halving Countdown</h4>
+    <div class="wrapper">
+        <div class="time-holder">
+            {{ time.day }} <span class="hidden-xs">{{ (time.day > 1 || time.day === 0) ? 'days' : 'day'}}</span>
+        </div>
+        <div class="time-holder">
+            {{ time.hour }} <span class="hidden-xs">{{ (time.hour > 1 || time.hour === 0) ? 'hours' : 'hour'}}</span>
+        </div>
+        <div class="time-holder">
+            {{ time.minute }} <span class="hidden-xs">{{ (time.minute > 1 || time.minute === 0) ? 'minutes' : 'minute'}}</span>
+        </div>
+        <div class="time-holder">
+            {{ time.second }} <span class="hidden-xs">{{ (time.second > 1 || time.second === 0) ? 'seconds' : 'second'}}</span>
+        </div>
+    </div>
+</div>
