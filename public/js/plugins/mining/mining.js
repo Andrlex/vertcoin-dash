@@ -2,7 +2,7 @@
 {
 	'use strict';
 
-	miningCtrl.$inject = ['$scope'];
+	miningCtrl.$inject = ['$scope', 'blockchain'];
 	angular
 		.module('app.ctrls')
 		.controller('miningCtrl', miningCtrl);
@@ -13,9 +13,19 @@
 
 	/**
 	 * @param $scope
+	 * @param blockchain
 	 */
-	function miningCtrl($scope)
+	function miningCtrl($scope, blockchain)
 	{
+		$scope.$on('blockchain.estTime', updateTime);
+
+		function updateTime()
+		{
+			let estHalveTime = blockchain.getEstHalveTime();
+
+			$scope.time = moment.duration(estHalveTime.time.diff(moment()))._milliseconds;
+			$scope.estHalveDate = estHalveTime.time.format('DD-MM-YYYY HH:mm:ss');
+		}
 
 	}
 

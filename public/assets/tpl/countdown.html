@@ -2,16 +2,40 @@
     <h4>Reward Halving Countdown</h4>
     <div class="wrapper">
         <div class="time-holder">
-            {{ time.day }} <span class="hidden-xs">{{ (time.day > 1 || time.day === 0) ? 'days' : 'day'}}</span>
+            {{ time.day }}
+            <span class="hidden-xs hidden-sm time-post">
+                {{ (time.day > 1 || time.day === 0) ? 'days' : 'day' }}
+            </span>
+            <span class="visible-xs visible-sm pull-right time-post">
+                {{ (time.day > 1 || time.day === 0) ? 'days' : 'day'}}
+            </span>
         </div>
         <div class="time-holder">
-            {{ time.hour }} <span class="hidden-xs">{{ (time.hour > 1 || time.hour === 0) ? 'hours' : 'hour'}}</span>
+            {{ time.hour }}
+            <span class="hidden-xs hidden-sm time-post">
+                {{ (time.hour > 1 || time.hour === 0) ? 'hours' : 'hour'}}
+            </span>
+            <span class="visible-xs visible-sm pull-right time-post">
+                {{ (time.hour > 1 || time.day === 0) ? 'hrs' : 'hr'}}
+            </span>
         </div>
         <div class="time-holder">
-            {{ time.minute }} <span class="hidden-xs">{{ (time.minute > 1 || time.minute === 0) ? 'minutes' : 'minute'}}</span>
+            {{ time.minute }}
+            <span class="hidden-xs hidden-sm time-post">
+                {{ (time.minute > 1 || time.minute === 0) ? 'minutes' : 'minute'}}
+            </span>
+            <span class="visible-xs visible-sm pull-right time-post">
+                {{ (time.minute > 1 || time.minute === 0) ? 'mins' : 'min'}}
+            </span>
         </div>
         <div class="time-holder">
-            {{ time.second }} <span class="hidden-xs">{{ (time.second > 1 || time.second === 0) ? 'seconds' : 'second'}}</span>
+            {{ time.second }}
+            <span class="hidden-xs hidden-sm time-post">
+                {{ (time.second > 1 || time.second === 0) ? 'seconds' : 'second'}}
+            </span>
+            <span class="visible-xs visible-sm pull-right time-post">
+                {{ (time.second > 1 || time.second === 0) ? 'secs' : 'sec'}}
+            </span>
         </div>
     </div>
 </div>

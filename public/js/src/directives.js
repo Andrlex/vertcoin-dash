@@ -1,5 +1,6 @@
 (function()
 {
+	timer.$inject = ['$interval'];
 	angular.module('app.drtvs')
 		.directive('timer', timer);
 
@@ -60,10 +61,10 @@
 				formattedTime.day = 0;
 
 				if (duration.months() > 0)
-					formattedTime.day += 30;
+					formattedTime.day += 31;
 
 				formattedTime.day += duration.days();
-				formattedTime.hour = duration.days();
+				formattedTime.hour = duration.hours();
 				formattedTime.minute = duration.minutes();
 				formattedTime.second = duration.seconds();
 

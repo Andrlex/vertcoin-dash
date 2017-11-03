@@ -15,15 +15,37 @@
 	 */
 	function blockchain(api, config)
 	{
-		let endpoint = config.apiEndpoints.explorer;
+		let endpoint = config.apiEndpoints.explorer,
+			estTimeTillHalve = {};
 
 		return {
-			getBlockchainData: getBlockchainData
+			getBlockchainData: getBlockchainData,
+			getEstHalveTime: getEstHalveTime,
+			setEstHalveTime: setEstHalveTime
 		};
 
+		/**
+		 * @returns {Promise}
+		 */
 		function getBlockchainData()
 		{
 			return api.get(endpoint + '/api/chain');
+		}
+
+		/**
+		 * @returns {{}}
+		 */
+		function getEstHalveTime()
+		{
+			return estTimeTillHalve;
+		}
+
+		/**
+		 * @param time
+		 */
+		function setEstHalveTime(time)
+		{
+			estTimeTillHalve.time = time;
 		}
 	}
 })();

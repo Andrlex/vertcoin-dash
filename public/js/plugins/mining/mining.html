@@ -1,9 +1,17 @@
 <div class="wrapper-top">
-    <div class="legend">Mining</div>
+    <div class="legend" ng-class="{'dark': darkTheme}">Mining</div>
+</div>
+<div class="row timer-container">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div ng-if="time">
+            <timer time="time"></timer>
+        </div>
+        <div class="est-time">{{ estHalveDate }}</div>
+    </div>
 </div>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="box height-override">
+        <div class="box height-override" ng-class="{'dark': darkTheme}">
             <div>
                 <h4>One Click Miner</h4>
                 <div class="inner">

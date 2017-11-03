@@ -43,12 +43,15 @@
 			function success(response)
 			{
 				$scope.chainData = response;
-
-				let estHalveDate = moment().add(Math.round((($scope.chainData.timeTillHalve * 60) * 60) * 1000), 'milliseconds');
-
-				$scope.estHalveDate = estHalveDate.format('DD-MM-YYYY HH:mm:ss');
 				$scope.chainData.lastUpdated = moment.unix($scope.chainData.lastUpdated).local().format('DD-MM-YYYY HH:mm:ss');
-				$scope.time = moment.duration(estHalveDate.diff(moment()))._milliseconds;
+
+				let currentEst = _.clone(blockchain.getEstHalveTime()),
+					estHalveDate = moment().add(Math.round((($scope.chainData.timeTillHalve * 60) * 60) * 1000), 'milliseconds');
+
+				blockchain.setEstHalveTime(estHalveDate);
+
+				if (currentEst.time !== estHalveDate)
+					$scope.$emit('blockchain.estTime');
 			}
 
 			function fail()
