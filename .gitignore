@@ -11,3 +11,5 @@
 /tpl
 Makefile.safe
 /css
+public/assets/css
+public/assets/js
