@@ -3,9 +3,9 @@
 {
     'use strict';
 
-    appConfig.$inject = ['$routeProvider', 'config', '$locationProvider', '$httpProvider'];
     appRun.$inject = ['$log'];
     angular.module('app', [
+		'angular-google-analytics',
         'app.ctrls',
         'app.tpl',
         'ngRoute'
@@ -15,7 +15,8 @@
 
     angular.module('app.ctrls', [
         'app.drtvs',
-        'app.factories'
+        'app.factories',
+		'ngCookies'
     ]);
 
     angular.module('app.factories', [
@@ -29,8 +30,9 @@
 	 * @param config
 	 * @param $locationProvider
 	 * @param $httpProvider
+	 * @param AnalyticsProvider
 	 */
-    function appConfig($routeProvider, config, $locationProvider, $httpProvider)
+    function appConfig($routeProvider, config, $locationProvider, $httpProvider, AnalyticsProvider)
     {
 		$routeProvider
             .when('/', {
@@ -44,6 +46,16 @@
 		$locationProvider
 			.html5Mode(true)
 			.hashPrefix('/');
+
+		AnalyticsProvider.setAccount(
+			{
+				set: {
+					forceSSL: true,
+				},
+				tracker: 'UA-109125947-1',
+				trackEvent: true
+			}
+		);
     }
 
     /**
