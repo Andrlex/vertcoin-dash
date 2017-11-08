@@ -20,6 +20,7 @@
 	function blockchainCtrl($scope, config, $interval, blockchain)
 	{
 		$scope.loading = false;
+		$scope.value = 10;
 		init();
 
 		$interval(function ()
@@ -43,6 +44,14 @@
 			{
 				$scope.chainData = response;
 				$scope.chainData.lastUpdated = moment.unix($scope.chainData.lastUpdated).local().format('DD-MM-YYYY HH:mm:ss');
+
+				var currentEst = _.clone(blockchain.getEstHalveTime()),
+					estHalveDate = moment().add(Math.round((($scope.chainData.timeTillHalve * 60) * 60) * 1000), 'milliseconds');
+
+				blockchain.setEstHalveTime(estHalveDate);
+
+				if (currentEst.time !== estHalveDate)
+					$scope.$emit('blockchain.estTime');
 			}
 
 			function fail()

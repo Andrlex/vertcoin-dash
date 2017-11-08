@@ -1,53 +1,61 @@
 <div class="wrapper-top">
-    <div class="legend">Mining</div>
+    <div class="legend" ng-class="{'dark': darkTheme}">Mining</div>
+</div>
+<div class="row timer-container">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div ng-if="time">
+            <timer time="time"></timer>
+        </div>
+        <div class="est-time">{{ estHalveDate }}</div>
+    </div>
 </div>
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6">
-        <div>
-            <div class="box height-override">
-                <div>
-                    <h4>One Click Miner</h4>
-                    <div class="inner">
-                        <div>
-                            <a class="pull-left" href="https://github.com/vertcoin/One-Click-Miner/releases">https://github.com/vertcoin/One-Click-Miner/releases</a>
-                            <a href="http://alwayshashing.com/ocmhowto.pdf">Guide & Setup</a>
-                        </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="box height-override" ng-class="{'dark': darkTheme}">
+            <div>
+                <h4>One Click Miner</h4>
+                <div class="inner">
+                    <div>
+                        <a class="pull-left" href="https://github.com/vertcoin/One-Click-Miner/releases">https://github.com/vertcoin/One-Click-Miner/releases</a>
+                        <a href="http://alwayshashing.com/ocmhowto.pdf">Guide & Setup</a>
                     </div>
                 </div>
-                <div>
-                    <h4>CC Miner</h4>
-                    <div class="inner">
-                        <div>
-                            <a class="pull-left" href="https://github.com/tpruvot/ccminer/releases">https://github.com/tpruvot/ccminer/releases</a>
-                            <a href="https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/">Guide & Setup</a>
-                        </div>
-                        <div>
-                            <a class="pull-left" href="https://github.com/KlausT/ccminer/releases">https://github.com/KlausT/ccminer/releases</a>
-                            <a href="https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/">Guide & Setup</a>
-                        </div>
+            </div>
+            <div>
+                <h4>CC Miner</h4>
+                <div class="inner">
+                    <div>
+                        <a class="pull-left" href="https://github.com/tpruvot/ccminer/releases">https://github.com/tpruvot/ccminer/releases</a>
+                        <a href="https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/">Guide
+                            & Setup</a>
+                    </div>
+                    <div>
+                        <a class="pull-left" href="https://github.com/KlausT/ccminer/releases">https://github.com/KlausT/ccminer/releases</a>
+                        <a href="https://www.cryptocurrencyfreak.com/2017/08/05/vertcoin-mining-with-ccminer-on-windows-10/">Guide
+                            & Setup</a>
                     </div>
                 </div>
-                <div class="separator"></div>
-                <div>
-                    <h4>Mining Pools</h4>
-                    <div class="inner">
-                        <h5>Net1 Pools (Recommended for 100+ MHP/S)</h5>
-                        <div>
-                            <a href="https://scanner.vtconline.org/">https://scanner.vtconline.org</a>
-                        </div>
-                        <div>
-                            <a href="http://vertscan1.errantshed.co.uk/">http://vertscan1.errantshed.co.uk/</a>
-                        </div>
-                        <div>
-                            <a href="http://scanner1.alwayshashing.com/">http://scanner1.alwayshashing.com/</a>
-                        </div>
-                        <h5>Net2 Pools (Recommended for lower hash rate)</h5>
-                        <div>
-                            <a href="http://vertscan2.errantshed.co.uk/">http://vertscan2.errantshed.co.uk/</a>
-                        </div>
-                        <div>
-                            <a href="http://scanner2.alwayshashing.com/">http://scanner2.alwayshashing.com/</a>
-                        </div>
+            </div>
+            <div class="separator"></div>
+            <div>
+                <h4>Mining Pools</h4>
+                <div class="inner">
+                    <h5>Net1 Pools (Recommended for 100+ MH/S)</h5>
+                    <div>
+                        <a href="https://scanner.vtconline.org/">https://scanner.vtconline.org</a>
+                    </div>
+                    <div>
+                        <a href="http://vertscan1.errantshed.co.uk/">http://vertscan1.errantshed.co.uk/</a>
+                    </div>
+                    <div>
+                        <a href="http://scanner1.alwayshashing.com/">http://scanner1.alwayshashing.com/</a>
+                    </div>
+                    <h5>Net2 Pools (Recommended for less than 100 MH/s)</h5>
+                    <div>
+                        <a href="http://vertscan2.errantshed.co.uk/">http://vertscan2.errantshed.co.uk/</a>
+                    </div>
+                    <div>
+                        <a href="http://scanner2.alwayshashing.com/">http://scanner2.alwayshashing.com/</a>
                     </div>
                 </div>
             </div>

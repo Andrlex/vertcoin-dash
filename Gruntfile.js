@@ -5,6 +5,8 @@ module.exports = function (grunt) {
         'bower_components/lodash/dist/lodash.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-animate/angular-animate.min.js',
+        'bower_components/angular-google-analytics/dist/angular-google-analytics.min.js',
+        'bower_components/angular-cookies/angular-cookies.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/angular-sanitize/angular-sanitize.min.js',
@@ -40,7 +42,7 @@ module.exports = function (grunt) {
             dev: {
                 files: {
                     'public/assets/js/libs.js': libs,
-                    'public/assets/js/core.js': '<%= ngAnnotate.files.src %>'
+                    'public/assets/js/app.js': '<%= ngAnnotate.files.src %>'
                 }
             }
         },
@@ -105,7 +107,7 @@ module.exports = function (grunt) {
                     sourceMap: false
                 },
                 files: {
-                    'public/assets/js/core.js': 'public/assets/js/core.js'
+					'public/assets/js/app.js': 'public/assets/js/app.js'
                 }
             }
         },
@@ -141,9 +143,10 @@ module.exports = function (grunt) {
                 cwd: 'public',
                 src: [
                     'assets/css/*.css',
-                    'assets/js/core.js',
+                    'assets/js/app.js',
                     'index.html',
-                    'assets/img/*.png'
+                    'assets/img/*.png',
+                    'assets/img/*.ico'
                 ],
                 dest: 'public'
             }
@@ -194,7 +197,8 @@ module.exports = function (grunt) {
             'ngtemplates',
             'ngAnnotate',
             'concat:dev',
-            'merge-json:default',
+		    'uglify:core',
+		    'merge-json:default',
             'copy:assets',
             'copy:links',
         ]);

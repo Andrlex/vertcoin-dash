@@ -43,7 +43,7 @@
 		 */
 		function get(url, params)
 		{
-			let request = $http.get(url);
+			var request = $http.get(url);
 
 			return request.then(success, fail);
 		}
