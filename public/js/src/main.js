@@ -3,9 +3,9 @@
 {
     'use strict';
 
-    appRun.$inject = ['$log'];
+    appConfig.$inject = ['$routeProvider', 'config', '$locationProvider'];
+    appRun.$inject = ['$rootScope', '$window', '$location'];
     angular.module('app', [
-		'angular-google-analytics',
         'app.ctrls',
         'app.tpl',
         'ngRoute'
@@ -29,10 +29,8 @@
 	 * @param $routeProvider
 	 * @param config
 	 * @param $locationProvider
-	 * @param $httpProvider
-	 * @param AnalyticsProvider
 	 */
-    function appConfig($routeProvider, config, $locationProvider, $httpProvider, AnalyticsProvider)
+    function appConfig($routeProvider, config, $locationProvider)
     {
 		$routeProvider
             .when('/', {
@@ -46,23 +44,17 @@
 		$locationProvider
 			.html5Mode(true)
 			.hashPrefix('/');
-
-		AnalyticsProvider.setAccount(
-			{
-				set: {
-					forceSSL: true,
-				},
-				tracker: 'UA-109125947-1',
-				trackEvent: true
-			}
-		);
     }
 
     /**
-     * @param $log
+     * @param $rootScope
+	 * @param $window
+	 * @param $location
      */
-    function appRun($log)
+    function appRun($rootScope, $window, $location)
     {
-        $log.debug('running');
+		$window.ga('create', 'UA-109125947-1', 'auto');
+
+		$window.ga('send', 'pageview', $location.path());
     }
 })();
