@@ -5,6 +5,7 @@ module.exports = function (grunt) {
         'bower_components/lodash/dist/lodash.min.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-animate/angular-animate.min.js',
+        'bower_components/angular-google-analytics/dist/angular-google-analytics.min.js',
         'bower_components/angular-cookies/angular-cookies.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'bower_components/angular-route/angular-route.min.js',
@@ -144,7 +145,8 @@ module.exports = function (grunt) {
                     'assets/css/*.css',
                     'assets/js/app.js',
                     'index.html',
-                    'assets/img/*.png'
+                    'assets/img/*.png',
+                    'assets/img/*.ico'
                 ],
                 dest: 'public'
             }
