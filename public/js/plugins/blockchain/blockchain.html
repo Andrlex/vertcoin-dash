@@ -29,7 +29,8 @@
     <div class="col-lg-4 col-md-4 col-sm-4">
         <div>
             <div class="box" ng-class="{'dark': darkTheme}">
-                <h4>Network</h4>
+                <h4>
+                    Network</h4>
                 <div class="inner">
                     <p><b>GH</b> &nbsp; {{ chainData.recent.hashPerSec | number:4}}</p>
                     <span>{{ chainData.recent.hashPerSec * 1000000000 | number: 2 }} &nbsp; P/S</span>
@@ -37,4 +38,5 @@
             </div>
         </div>
     </div>
+    <div ng-if="animating" class="halving">Happy halving day!</div>
 </div>

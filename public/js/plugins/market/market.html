@@ -1,8 +1,8 @@
 <div class="wrapper-top">
-    <div class="legend">
+    <div class="legend" ng-class="{'dark': darkTheme}">
         <div>
             <div class="pull-left">Market</div>
-            <select class="form-control" ng-options="key as key for (key, value) in currencys" ng-model="currency"
+            <select class="form-control" ng-class="{'dark': darkTheme}" ng-options="key as key for (key, value) in currencys" ng-model="currency"
                     ng-change="init()">
             </select>
             <span class="pull-right">{{ marketData.lastUpdated }}</span>
@@ -11,29 +11,29 @@
 </div>
 <div class="row">
     <div class="col-lg-4">
-        <div class="box">
+        <div class="box" ng-class="{'dark': darkTheme}">
             <h4>1 Vertcoin</h4>
             <div class="inner">
                 <p class="pull-right corner"
-                   ng-class="{'up': marketData.hourChange > 0, 'down': marketData.hourChange < 0}">
+                   ng-class="{'up': marketData.hourChange > 0, 'down': marketData.hourChange < 0, 'dark': darkTheme}">
                     {{ marketData['percent_change_1h'] }} %
                     <span class="changes">
-                        <span ng-class="{'up': marketData.dayChange > 0, 'down': marketData.dayChange  < 0}">
+                        <span ng-class="{'up': marketData.dayChange > 0, 'down': marketData.dayChange  < 0, 'dark': darkTheme}">
                             D {{ marketData['percent_change_24h'] }} %&nbsp;&nbsp;
                         </span>
-                        <span ng-class="{'up': marketData.weekChange  > 0, 'down': marketData.weekChange < 0}">
+                        <span ng-class="{'up': marketData.weekChange  > 0, 'down': marketData.weekChange < 0, 'dark': darkTheme}">
                             W {{ marketData['percent_change_7d'] }} %</span>
                     </span>
                 </p>
                 &nbsp;
                 <p class="pull-right">
-                    {{ currencys[currency].token }} {{ marketData[currencys[currency].price] | number: 2 }}
+                    {{ currencys[currency].token }} {{ marketData[currencys[currency].price] | number: currencys[currency].decimals }}
                 </p>
             </div>
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="box">
+        <div class="box" ng-class="{'dark': darkTheme}">
             <h4>
                 <span class="pull-left">Rank {{ marketData.rank}}</span>
                 Market Cap</h4>
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="box">
+        <div class="box" ng-class="{'dark': darkTheme}">
             <h4>Volume (24hr)</h4>
             <div class="inner">
                 <p>{{ currencys[currency].token }} {{ marketData[currencys[currency].volume] | number: 0 }}</p>

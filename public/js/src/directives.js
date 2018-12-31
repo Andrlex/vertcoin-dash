@@ -60,13 +60,21 @@
 
 				formattedTime.day = 0;
 
-				if (duration.months() > 0)
-					formattedTime.day += 31;
+				// if (duration.months() > 0)
+				// 	formattedTime.day += 31 * duration.months();
+				//
+				// if (duration.years() > 0)
+				// 	formattedTime.day += duration.years() * 365;
+				//
+				// formattedTime.day += duration.days();
+				// formattedTime.hour = duration.hours();
+				// formattedTime.minute = duration.minutes();
+				// formattedTime.second = duration.seconds();
 
-				formattedTime.day += duration.days();
+				formattedTime.years = duration.years();
+				formattedTime.months = duration.months();
+				formattedTime.day = duration.days();
 				formattedTime.hour = duration.hours();
-				formattedTime.minute = duration.minutes();
-				formattedTime.second = duration.seconds();
 
 				return formattedTime;
 			}

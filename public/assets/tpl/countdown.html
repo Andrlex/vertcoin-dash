@@ -1,40 +1,40 @@
 <div class="timer">
     <h4>Reward Halving Countdown</h4>
     <div class="wrapper">
-        <div class="time-holder">
+        <div class="time-holder" ng-class="{'dark': $parent.$parent.darkTheme}">
+            {{ time.years }}
+            <span class="hidden-xs hidden-sm time-post">
+                {{ (time.years > 1 || time.years === 0) ? 'years' : 'year' }}
+            </span>
+            <span class="visible-xs visible-sm pull-right time-post">
+                {{ (time.years > 1 || time.years === 0) ? 'years' : 'year'}}
+            </span>
+        </div>
+        <div class="time-holder" ng-class="{'dark': $parent.$parent.darkTheme}">
+            {{ time.months }}
+            <span class="hidden-xs hidden-sm time-post">
+                {{ (time.months > 1 || time.months === 0) ? 'months' : 'month'}}
+            </span>
+            <span class="visible-xs visible-sm pull-right time-post">
+                {{ (time.months > 1 || time.months === 0) ? 'mo' : 'mo'}}
+            </span>
+        </div>
+        <div class="time-holder" ng-class="{'dark': $parent.$parent.darkTheme}">
             {{ time.day }}
             <span class="hidden-xs hidden-sm time-post">
-                {{ (time.day > 1 || time.day === 0) ? 'days' : 'day' }}
+                {{ (time.day > 1 || time.day === 0) ? 'days' : 'day'}}
             </span>
             <span class="visible-xs visible-sm pull-right time-post">
                 {{ (time.day > 1 || time.day === 0) ? 'days' : 'day'}}
             </span>
         </div>
-        <div class="time-holder">
+        <div class="time-holder" ng-class="{'dark': $parent.$parent.darkTheme}">
             {{ time.hour }}
             <span class="hidden-xs hidden-sm time-post">
                 {{ (time.hour > 1 || time.hour === 0) ? 'hours' : 'hour'}}
             </span>
             <span class="visible-xs visible-sm pull-right time-post">
-                {{ (time.hour > 1 || time.day === 0) ? 'hrs' : 'hr'}}
-            </span>
-        </div>
-        <div class="time-holder">
-            {{ time.minute }}
-            <span class="hidden-xs hidden-sm time-post">
-                {{ (time.minute > 1 || time.minute === 0) ? 'minutes' : 'minute'}}
-            </span>
-            <span class="visible-xs visible-sm pull-right time-post">
-                {{ (time.minute > 1 || time.minute === 0) ? 'mins' : 'min'}}
-            </span>
-        </div>
-        <div class="time-holder">
-            {{ time.second }}
-            <span class="hidden-xs hidden-sm time-post">
-                {{ (time.second > 1 || time.second === 0) ? 'seconds' : 'second'}}
-            </span>
-            <span class="visible-xs visible-sm pull-right time-post">
-                {{ (time.second > 1 || time.second === 0) ? 'secs' : 'sec'}}
+                {{ (time.hour > 1 || time.hour === 0) ? 'hrs' : 'hr'}}
             </span>
         </div>
     </div>

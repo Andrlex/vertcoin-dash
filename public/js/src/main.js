@@ -6,7 +6,7 @@
     appConfig.$inject = ['$routeProvider', 'config', '$locationProvider'];
     appRun.$inject = ['$rootScope', '$window', '$location'];
     angular.module('app', [
-        'app.ctrls',
+		'app.ctrls',
         'app.tpl',
         'ngRoute'
     ])

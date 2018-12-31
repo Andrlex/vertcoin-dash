@@ -24,19 +24,29 @@
 				token: '$',
 				marketCap: 'market_cap_usd',
 				price: 'price_usd',
-				volume: '24h_volume_usd'
+				volume: '24h_volume_usd',
+				decimals: 2
 			},
 			GBP: {
 				token: '£',
 				marketCap: 'market_cap_gbp',
 				price: 'price_gbp',
-				volume: '24h_volume_gbp'
+				volume: '24h_volume_gbp',
+				decimals: 2
 			},
 			EUR: {
 				token: '€',
 				marketCap: 'market_cap_eur',
 				price: 'price_eur',
-				volume: '24h_volume_eur'
+				volume: '24h_volume_eur',
+				decimals: 2
+			},
+			BTC: {
+				token: '฿',
+				marketCap: 'market_cap_btc',
+				price: 'price_btc',
+				volume: '24h_volume_btc',
+				decimals: 8
 			}
 		};
 		$scope.init = init;

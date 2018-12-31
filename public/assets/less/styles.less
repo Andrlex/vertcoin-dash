@@ -4,7 +4,6 @@
 body {
   padding-top: 50px;
   padding-bottom: 20px;
-  color: black !important;
   background-color: #efefef;
   font-family: 'Roboto Condensed', sans-serif !important;
   background-image: url('../img/vertcoin-logo.png');
@@ -26,10 +25,9 @@ body {
 
 .footer {
   padding-top: 19px;
-  color: #000;
   border-top: 1px solid #e5e5e5;
   .dark {
-    color: #a5a5a5 !important;
+    color: #a5a5a5;
     border-top: 1px solid #a5a5a5 !important;
   }
 }
@@ -86,7 +84,7 @@ body {
       margin-top: 3px;
       border-radius: 0;
       width: 50px;
-      padding: 5px 12px;
+      text-align: center;
       height: 30px;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -111,6 +109,43 @@ body {
 .light-g {
   color: black;
   background-color: white;
+}
+
+.style-control {
+  position: absolute;
+  top: 0;
+  .btn-style {
+    border-radius: 0;
+    color: #000;
+    outline: #a6a6a6 solid 1px;
+    background-color: white;
+    margin-top: 10px;
+    &.dark {
+      color: rgb(165, 165, 165);
+      outline: 1px solid #a6a6a6;
+      background-color: #101010;
+    }
+    &.focus {
+      border-radius: 0;
+      outline: 1px solid #a6a6a6;
+      outline-offset: -1px;
+    }
+  }
+}
+
+small {
+  font-size: 88%
+}
+
+.halving {
+  position: absolute;
+  color: #336439;
+  bottom: 616px;
+  pointer-events: none;
+  height: 50px;
+  top: 5px;
+  font-size: 38px;
+  font-weight: 500;
 }
 
 @import "bootstrap";
