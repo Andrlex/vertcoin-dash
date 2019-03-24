@@ -19,3 +19,4 @@ live:
 	@mkdir -p $(VERTCOIN_DASHBOARD_LOCATION)/public
 	@cd $(INSTALL_LOC); \
 		rsync -qavI --exclude 'public/assets/tpl' --exclude 'public/assets/less' --exclude 'public/js' ./public $(VERTCOIN_DASHBOARD_LOCATION)
+	systemctl restart vert-service.service
