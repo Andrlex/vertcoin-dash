@@ -16,18 +16,18 @@
             <div class="inner">
                 <p class="pull-right corner"
                    ng-class="{'up': marketData.hourChange > 0, 'down': marketData.hourChange < 0, 'dark': darkTheme}">
-                    {{ marketData['percent_change_1h'] }} %
+                    {{ marketData['hourChange'] }} %
                     <span class="changes">
                         <span ng-class="{'up': marketData.dayChange > 0, 'down': marketData.dayChange  < 0, 'dark': darkTheme}">
-                            D {{ marketData['percent_change_24h'] }} %&nbsp;&nbsp;
+                            D {{ marketData['dayChange'] }} %&nbsp;&nbsp;
                         </span>
                         <span ng-class="{'up': marketData.weekChange  > 0, 'down': marketData.weekChange < 0, 'dark': darkTheme}">
-                            W {{ marketData['percent_change_7d'] }} %</span>
+                            W {{ marketData['weekChange'] }} %</span>
                     </span>
                 </p>
                 &nbsp;
                 <p class="pull-right">
-                    {{ currencys[currency].token }} {{ marketData[currencys[currency].price] | number: currencys[currency].decimals }}
+                    {{ currencys[currency].token }} {{ marketData['quotes'][currency].price | number: currencys[currency].decimals }}
                 </p>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <span class="pull-left">Rank {{ marketData.rank}}</span>
                 Market Cap</h4>
             <div class="inner">
-                <p>{{ currencys[currency].token }} {{ marketData[currencys[currency].marketCap] | number: 0 }}</p>
+                <p>{{ currencys[currency].token }} {{ marketData['quotes'][currency]['market_cap'] | number: 0 }}</p>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
         <div class="box" ng-class="{'dark': darkTheme}">
             <h4>Volume (24hr)</h4>
             <div class="inner">
-                <p>{{ currencys[currency].token }} {{ marketData[currencys[currency].volume] | number: 0 }}</p>
+                <p>{{ currencys[currency].token }} {{ marketData['quotes'][currency]['volume_24h'] | number: 0 }}</p>
             </div>
         </div>
     </div>

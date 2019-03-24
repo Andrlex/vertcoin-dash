@@ -1,6 +1,7 @@
 {
   "apiEndpoints": {
     "explorer": "https://www.vertcoin-dashboard.co.uk",
-    "coinMarket": "https://api.coinmarketcap.com/v1/ticker/vertcoin/"
+    "coinMarket": "https://api.coinmarketcap.com/v1/ticker/vertcoin/",
+    "coinPap": "https://api.coinpaprika.com/v1/tickers/vtc-vertcoin"
   }
 }

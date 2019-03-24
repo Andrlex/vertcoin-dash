@@ -13,8 +13,9 @@
 	 */
 	function market(api, config)
 	{
-		var endpoint = config.apiEndpoints.coinMarket;
+		var endpoint = config.apiEndpoints.coinPap;
 
+		console.log(endpoint);
 		return {
 			getMarketData: getMarketData
 		};
@@ -23,7 +24,7 @@
 		{
 			var param = angular.isDefined(currency) ? currency : 'USD';
 
-			return api.get(endpoint + '?convert=' + param);
+			return api.get(endpoint + '?quotes=' + param);
 		}
 	}
 })();

@@ -70,11 +70,11 @@
 
 			function success(response)
 			{
-				$scope.marketData = response[0];
-				$scope.marketData.hourChange = parseFloat($scope.marketData['percent_change_1h']);
-				$scope.marketData.dayChange = parseFloat($scope.marketData['percent_change_24h']);
-				$scope.marketData.weekChange = parseFloat($scope.marketData['percent_change_7d']);
-				$scope.marketData.lastUpdated = moment.unix(response[0].last_updated).format('DD-MM-YYYY HH:mm:ss');
+				$scope.marketData = response;
+				$scope.marketData.hourChange = parseFloat($scope.marketData['quotes'][$scope.currency]['percent_change_1h']);
+				$scope.marketData.dayChange = parseFloat($scope.marketData['quotes'][$scope.currency]['percent_change_24h']);
+				$scope.marketData.weekChange = parseFloat($scope.marketData['quotes'][$scope.currency]['percent_change_7d']);
+				$scope.marketData.lastUpdated = moment($scope.marketData.last_updated).format('DD-MM-YYYY HH:mm:ss');
 			}
 
 			function fail()
